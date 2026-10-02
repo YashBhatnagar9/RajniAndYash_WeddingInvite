@@ -36,11 +36,17 @@ npm run dev                  # http://localhost:3000
 | Script                   | Description                                                   |
 | ------------------------ | ------------------------------------------------------------- |
 | `npm run dev`            | Start the dev server (Turbopack).                             |
-| `npm run build`          | Production build.                                             |
+| `npm run build`          | Production build (Webpack).                                   |
 | `npm run start`          | Serve the production build.                                   |
 | `npm run lint`           | Lint with ESLint (flat config, `eslint-config-next`).         |
 | `npm run format`         | Format the repo with Prettier.                                |
 | `npm run sharpen:frames` | Batch-sharpen the hero sequence into `public/hero-sharpened`. |
+
+Production builds explicitly use Webpack to work around the observed Next.js
+16.3.7 Turbopack error when processing Jost via `next/font/google`
+(`next/font/google queries have exactly one entry`). This preserves the existing
+self-hosted fonts without adding dependencies or changing application imports.
+The development server continues to use Turbopack.
 
 ## Project structure
 
